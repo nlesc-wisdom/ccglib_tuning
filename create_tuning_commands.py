@@ -56,19 +56,12 @@ def construct_axis_search_space(type_in, type_out):
 
     mnk_typical = 256
 
-    # square matrices
-    mnk = mnk_min
-    while mnk <= mnk_max:
-        for b in batch_sizes:
-            if check_memory_requirement(b, mnk, mnk, mnk, type_in_size, type_out_size):
-                yield f"-b {b} -m {mnk} -n {mnk} -k {mnk}"
-        mnk *= 2
-
-    # fixed along one or two axes
     fixed = mnk_typical
     variable = mnk_min
     while variable <= mnk_max:
         for b in batch_sizes:
+            if check_memory_requirement(b, variable, variable, variable, type_in_size, type_out_size):
+                yield f"-b {b} -m {variable} -n {variable} -k {variable}"
             # fixed M
             if check_memory_requirement(b, fixed, variable, variable, type_in_size, type_out_size):
                 yield f"-b {b} -m {fixed} -n {variable} -k {variable}"
