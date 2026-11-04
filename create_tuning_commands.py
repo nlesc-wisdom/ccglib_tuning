@@ -94,7 +94,7 @@ if __name__ == "__main__":
         "kernel": "opt",
         "backend": "cupy",
         "ccglib": ccglib_dir,
-        "name": f"cache/{device.name.lower().replace(' ', '_')}"
+        "name": f"cache/raw/{device.name.lower().replace(' ', '_')}"
     }
 
     fixed_arg_str = " ".join((f"--{k}={v}" for k, v in fixed_args.items()))

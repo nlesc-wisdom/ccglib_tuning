@@ -10,4 +10,6 @@ venv/
 
 .ruff_cache/
 
-tuning_commands.txt
+tuning_commands*.txt
+slurm*.out
+job*.sh
